@@ -1,5 +1,5 @@
 """FastAPI routers, one per resource."""
 
-from app.api import documents, query
+from app.api import documents, evaluate, query
 
-__all__ = ["documents", "query"]
+__all__ = ["documents", "evaluate", "query"]

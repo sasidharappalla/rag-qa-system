@@ -1,0 +1,122 @@
+[
+  {
+    "question": "What is Acme Robotics' mission?",
+    "expected_answer": "Acme Robotics builds autonomous warehouse robots that reduce manual handling injuries and increase throughput.",
+    "expected_source_keywords": ["autonomous warehouse robots", "throughput", "injuries"],
+    "source_document": "sample1_acme_handbook.pdf"
+  },
+  {
+    "question": "Where was Acme Robotics founded and when?",
+    "expected_answer": "The company was founded in 2019 in Boston, Massachusetts.",
+    "expected_source_keywords": ["founded", "2019", "Boston"],
+    "source_document": "sample1_acme_handbook.pdf"
+  },
+  {
+    "question": "What percentage of health insurance premiums does Acme pay for full-time employees?",
+    "expected_answer": "Acme pays 90% of premiums for medical, dental, and vision insurance.",
+    "expected_source_keywords": ["90%", "premiums", "insurance"],
+    "source_document": "sample1_acme_handbook.pdf"
+  },
+  {
+    "question": "How much does Acme contribute to an employee's 401(k)?",
+    "expected_answer": "Acme contributes 6% to every employee's 401(k) regardless of personal contribution.",
+    "expected_source_keywords": ["6%", "401(k)", "contribution"],
+    "source_document": "sample1_acme_handbook.pdf"
+  },
+  {
+    "question": "How many weeks of paid parental leave does the primary caregiver get?",
+    "expected_answer": "The primary caregiver receives 16 weeks of paid parental leave.",
+    "expected_source_keywords": ["16 weeks", "primary caregiver", "parental"],
+    "source_document": "sample1_acme_handbook.pdf"
+  },
+  {
+    "question": "Which days must all staff be on-site at Acme?",
+    "expected_answer": "All staff must be on-site Tuesdays and Thursdays.",
+    "expected_source_keywords": ["Tuesdays", "Thursdays", "on-site"],
+    "source_document": "sample1_acme_handbook.pdf"
+  },
+  {
+    "question": "How are employees supposed to report code of conduct violations?",
+    "expected_answer": "Violations can be reported to the Ethics Hotline at ext. 4500 or via the confidential web form on the internal portal.",
+    "expected_source_keywords": ["Ethics Hotline", "4500", "confidential"],
+    "source_document": "sample1_acme_handbook.pdf"
+  },
+  {
+    "question": "What is the daily meal reimbursement cap for overnight travel at Acme?",
+    "expected_answer": "Meals during overnight travel are reimbursed up to 75 US dollars per day.",
+    "expected_source_keywords": ["75", "meals", "overnight"],
+    "source_document": "sample1_acme_handbook.pdf"
+  },
+  {
+    "question": "What is a vector database?",
+    "expected_answer": "A vector database is a specialized data store that indexes high-dimensional embedding vectors to support similarity search.",
+    "expected_source_keywords": ["vector database", "embedding", "similarity search"],
+    "source_document": "sample2_vector_db_primer.pdf"
+  },
+  {
+    "question": "What are the two common indexing strategies mentioned for vector databases?",
+    "expected_answer": "HNSW (Hierarchical Navigable Small World) and IVF-PQ (Inverted File with Product Quantization).",
+    "expected_source_keywords": ["HNSW", "IVF-PQ", "indexing"],
+    "source_document": "sample2_vector_db_primer.pdf"
+  },
+  {
+    "question": "What is the main use case for vector databases?",
+    "expected_answer": "Retrieval-augmented generation (RAG).",
+    "expected_source_keywords": ["retrieval-augmented generation", "RAG"],
+    "source_document": "sample2_vector_db_primer.pdf"
+  },
+  {
+    "question": "Which two vector stores are recommended for local development?",
+    "expected_answer": "Chroma and FAISS are popular for local development because they run in-process.",
+    "expected_source_keywords": ["Chroma", "FAISS", "local development"],
+    "source_document": "sample2_vector_db_primer.pdf"
+  },
+  {
+    "question": "What was Acme Robotics' Q3 2026 revenue?",
+    "expected_answer": "Q3 revenue was 42.1 million US dollars, up 28 percent year over year.",
+    "expected_source_keywords": ["42.1 million", "Q3", "28 percent"],
+    "source_document": "sample3_quarterly_review.pdf"
+  },
+  {
+    "question": "How much recurring software revenue did Acme report in Q3 2026?",
+    "expected_answer": "Recurring software revenue contributed 11.3 million dollars.",
+    "expected_source_keywords": ["11.3 million", "software revenue"],
+    "source_document": "sample3_quarterly_review.pdf"
+  },
+  {
+    "question": "What was Acme's gross revenue retention in Q3 2026?",
+    "expected_answer": "Gross revenue retention was 96 percent.",
+    "expected_source_keywords": ["96 percent", "gross revenue retention"],
+    "source_document": "sample3_quarterly_review.pdf"
+  },
+  {
+    "question": "What was Acme's net revenue retention in Q3 2026?",
+    "expected_answer": "Net revenue retention was 118 percent.",
+    "expected_source_keywords": ["118 percent", "net revenue retention"],
+    "source_document": "sample3_quarterly_review.pdf"
+  },
+  {
+    "question": "How many active customers does Acme Robotics have after Q3 2026?",
+    "expected_answer": "137 active customers.",
+    "expected_source_keywords": ["137", "active customer"],
+    "source_document": "sample3_quarterly_review.pdf"
+  },
+  {
+    "question": "What is Acme Robotics' full-year 2026 revenue guidance?",
+    "expected_answer": "Full-year guidance is 160 to 170 million US dollars in revenue.",
+    "expected_source_keywords": ["160", "170 million", "guidance"],
+    "source_document": "sample3_quarterly_review.pdf"
+  },
+  {
+    "question": "What is Acme Robotics' total headcount?",
+    "expected_answer": "312 people.",
+    "expected_source_keywords": ["312", "headcount"],
+    "source_document": "sample3_quarterly_review.pdf"
+  },
+  {
+    "question": "When did Acme Robotics ship its Gen-4 warehouse robot to its first customers?",
+    "expected_answer": "The Gen-4 warehouse robot shipped to its first three customers in September 2026.",
+    "expected_source_keywords": ["Gen-4", "September", "warehouse robot"],
+    "source_document": "sample3_quarterly_review.pdf"
+  }
+]
