@@ -353,7 +353,7 @@ Given another week, in rough priority order:
 **Sasidhar Appalla** — AI/ML Engineer
 
 [![GitHub](https://img.shields.io/badge/GitHub-sasidharappalla-181717?style=for-the-badge&logo=github)](https://github.com/sasidharappalla)
-[![Email](https://img.shields.io/badge/Email-shanmukhchatadi%40gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:shanmukhchatadi@gmail.com)
+[![Email](https://img.shields.io/badge/Email-sasidharapalla%40gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:sasidharapalla@gmail.com)
 
 Built as a portfolio project to demonstrate end-to-end ownership of a modern RAG system — from chunking strategy to evaluation methodology, from async API design to container orchestration. Every technology here is genuinely represented in the code; nothing is resume filler.
 
