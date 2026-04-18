@@ -1,0 +1,53 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual envs
+.venv/
+venv/
+env/
+ENV/
+
+# Tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+coverage.xml
+
+# Secrets
+.env
+.env.local
+.env.*.local
+
+# App data (never commit user uploads, vector store, or eval outputs)
+data/uploads/*
+!data/uploads/.gitkeep
+data/chroma/
+chroma/
+*.sqlite
+*.sqlite3
+*.db
+
+# Eval run outputs
+eval/results/*
+!eval/results/.gitkeep
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Logs
+*.log
+logs/
