@@ -25,8 +25,8 @@ coverage.xml
 
 # Secrets
 .env
-.env.local
-.env.*.local
+.env.*
+!.env.example
 
 # App data (never commit user uploads, vector store, or eval outputs)
 data/uploads/*
@@ -51,3 +51,15 @@ Thumbs.db
 # Logs
 *.log
 logs/
+
+# Terraform
+.terraform/
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup
+*.tfplan
+crash.log
+
+# Kubernetes / Azure
+kubeconfig
+*.kubeconfig

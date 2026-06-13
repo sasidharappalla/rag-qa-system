@@ -19,6 +19,8 @@ from starlette.requests import Request
 from starlette.responses import Response
 from starlette.types import ASGIApp
 
+from app.config import get_settings
+
 _request_id_var: ContextVar[str | None] = ContextVar("request_id", default=None)
 
 
@@ -89,9 +91,13 @@ class RequestContextMiddleware(BaseHTTPMiddleware):
             return response
         finally:
             latency_ms = int((time.perf_counter() - start) * 1000)
+            settings = get_settings()
             self._logger.info(
                 "request",
                 extra={
+                    "service": settings.service_name,
+                    "endpoint": request.url.path,
+                    "status": "ok" if status_code < 400 else "error",
                     "route": request.url.path,
                     "method": request.method,
                     "status_code": status_code,

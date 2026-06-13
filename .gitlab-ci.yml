@@ -1,0 +1,105 @@
+stages:
+  - lint
+  - test
+  - build
+  - terraform
+  - helm
+  - deploy
+
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+
+cache:
+  paths:
+    - .cache/pip
+
+python_lint:
+  stage: lint
+  image: python:3.11-slim
+  before_script:
+    - pip install ruff==0.8.6
+  script:
+    - ruff check app tests
+
+python_test:
+  stage: test
+  image: python:3.11-slim
+  before_script:
+    - pip install --requirement app/requirements.txt
+  script:
+    - pytest app/tests
+
+docker_build:
+  stage: build
+  image: docker:27.5.1-cli
+  services:
+    - name: docker:27.5.1-dind
+  variables:
+    DOCKER_TLS_CERTDIR: "/certs"
+  script:
+    - IMAGE_TAG="${CI_REGISTRY_IMAGE:-docuquery}:${CI_COMMIT_SHORT_SHA}"
+    - docker build --file app/Dockerfile --tag "$IMAGE_TAG" app
+    - |
+      if [ -n "${CI_REGISTRY:-}" ] &&
+         [ -n "${CI_REGISTRY_USER:-}" ] &&
+         [ -n "${CI_REGISTRY_PASSWORD:-}" ] &&
+         [ -n "${CI_REGISTRY_IMAGE:-}" ]; then
+        printf '%s' "$CI_REGISTRY_PASSWORD" |
+          docker login --username "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
+        docker push "$IMAGE_TAG"
+      else
+        echo "Registry variables are unavailable; image build completed without a push."
+      fi
+
+terraform_fmt_validate:
+  stage: terraform
+  image:
+    name: hashicorp/terraform:1.10.5
+    entrypoint: [""]
+  script:
+    - terraform -chdir=infra fmt -check
+    - terraform -chdir=infra init -backend=false
+    - terraform -chdir=infra validate
+
+helm_lint_template:
+  stage: helm
+  image:
+    name: alpine/helm:3.17.1
+    entrypoint: [""]
+  script:
+    - helm lint helm/docuquery
+    - helm template docuquery helm/docuquery
+
+deploy_to_aks:
+  stage: deploy
+  image: mcr.microsoft.com/azure-cli:2.72.0
+  before_script:
+    - az aks install-cli
+    - curl -fsSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+  script:
+    - >
+      az login --service-principal
+      --username "$AZURE_CLIENT_ID"
+      --password "$AZURE_CLIENT_SECRET"
+      --tenant "$AZURE_TENANT_ID"
+      --output none
+    - >
+      az aks get-credentials
+      --resource-group "$AZURE_RESOURCE_GROUP"
+      --name "$AKS_CLUSTER_NAME"
+      --overwrite-existing
+    - >
+      helm upgrade --install docuquery helm/docuquery
+      --namespace docuquery
+      --create-namespace
+      --set image.repository="$CI_REGISTRY_IMAGE"
+      --set image.tag="$CI_COMMIT_SHORT_SHA"
+      --wait
+      --timeout 5m
+  environment:
+    name: demo
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      when: manual
+      allow_failure: false
+    - when: never

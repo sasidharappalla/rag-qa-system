@@ -1,0 +1,75 @@
+replicaCount: 2
+
+image:
+  repository: registry.example.com/docuquery
+  tag: latest
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 10001
+  runAsGroup: 10001
+  fsGroup: 10001
+
+securityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+      - ALL
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8000
+
+ingress:
+  enabled: false
+  className: nginx
+  annotations: {}
+  hosts:
+    - host: docuquery.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+
+env:
+  APP_ENV: demo
+  APP_VERSION: "1.0.0"
+  LOG_LEVEL: info
+  LLM_PROVIDER: mock
+  PLATFORM_DEMO_MODE: "true"
+  DEPENDENCY_HEALTH_CHECKS: "false"
+  DATABASE_URL: sqlite:////tmp/docuquery.db
+  CHROMA_PERSIST_DIR: /tmp/chroma
+  UPLOAD_DIR: /tmp/uploads
+
+autoscaling:
+  enabled: false
+  minReplicas: 2
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 70
+
+prometheus:
+  scrape: true
+  path: /metrics
+  port: "8000"

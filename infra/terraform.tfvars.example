@@ -1,0 +1,7 @@
+location            = "eastus"
+resource_group_name = "rg-docuquery-platform-demo"
+cluster_name        = "aks-docuquery-demo"
+dns_prefix          = "docuquery-demo"
+node_count          = 1
+node_vm_size        = "Standard_B2s"
+environment         = "demo"

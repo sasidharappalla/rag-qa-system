@@ -29,7 +29,7 @@ class Settings(BaseSettings):
     chroma_persist_dir: str = Field(default="./data/chroma")
 
     # ---- LLM ----
-    llm_provider: Literal["openai", "anthropic"] = Field(default="anthropic")
+    llm_provider: Literal["openai", "anthropic", "mock"] = Field(default="anthropic")
     openai_api_key: str | None = None
     anthropic_api_key: str | None = None
     openai_model: str = "gpt-4o-mini"
@@ -46,8 +46,13 @@ class Settings(BaseSettings):
     default_top_k: int = 4
 
     # ---- Ops ----
+    service_name: str = "docuquery"
+    app_version: str = "1.0.0"
+    app_env: str = "development"
     log_level: str = "INFO"
     upload_dir: str = "./data/uploads"
+    dependency_health_checks: bool = True
+    platform_demo_mode: bool = False
 
 
 @lru_cache(maxsize=1)

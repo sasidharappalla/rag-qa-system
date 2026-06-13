@@ -43,6 +43,10 @@ def get_llm_provider() -> LLMProvider:
 
 def _build_provider(settings: Settings) -> LLMProvider:
     # Imported lazily so tests that only exercise one provider don't pay to import both SDKs.
+    if settings.llm_provider == "mock":
+        from app.llm.mock_provider import MockProvider
+
+        return MockProvider()
     if settings.llm_provider == "openai":
         if not settings.openai_api_key:
             raise LLMError("LLM_PROVIDER=openai but OPENAI_API_KEY is not set")

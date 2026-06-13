@@ -1,5 +1,7 @@
-"""FastAPI routers, one per resource."""
+"""FastAPI routers, one per resource.
 
-from app.api import documents, evaluate, health, query
+Routers are imported by ``app.main`` so demo mode can avoid importing the optional
+RAG dependency graph.
+"""
 
-__all__ = ["documents", "evaluate", "health", "query"]
+__all__ = ["documents", "evaluate", "health", "platform", "query"]
